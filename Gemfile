@@ -56,4 +56,4 @@ gem 'pg', group: :production
 
 gem 'rails_12factor', group: :production
 
-ruby '2.1.9'
+ruby '2.3.3'
