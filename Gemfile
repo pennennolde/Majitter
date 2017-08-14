@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 # Use mysql as the database for Active Record
-gem 'mysql2', '0.3.18'
+gem 'mysql2', '0.3.18', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,6 +46,14 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
+
 gem 'pry-rails'
 gem 'compass-rails', '~> 2.0'
 gem 'sprockets', '2.11.0'
+gem 'coffee-script-source', '1.8.0'
+
+gem 'pg', group: :production
+
+gem 'rails_12factor', group: :production
+
+ruby '2.1.9'
