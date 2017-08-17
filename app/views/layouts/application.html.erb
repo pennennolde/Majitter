@@ -8,12 +8,22 @@
 </head>
 <body>
 
-<%= link_to 'Twitterでログイン', '/auth/twitter' %>
-<% if flash[:notice] %>
-    <div class="alert alert-success">
-      	<%= flash[:notice] %>
-    </div>
- <% end %>
+
+
+<% unless logged_in? %>
+	<%= link_to 'Twitterでログイン', '/auth/twitter' %>
+	<% if flash[:notice] %>
+    	<div class="alert alert-success">
+      		<%= flash[:notice] %>
+    	</div>
+ 	<% end %>
+<% else %>
+	<%= link_to 'ログアウト', logout_path %>
+	<%= image_tag 'current_user.image_url' %>
+  	<%= label_tag 'current_user.nickname' %>
+<% end %>
+
+
 
 <%= yield %>
 
