@@ -61,3 +61,5 @@ gem 'rails_12factor', group: :production
 
 gem 'oauth'
 gem 'omniauth-twitter'
+
+gem 'dotenv-rails'
