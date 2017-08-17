@@ -19,8 +19,8 @@
  	<% end %>
 <% else %>
 	<%= link_to 'ログアウト', logout_path %>
-	<%= image_tag 'current_user.image_url' %>
-  	<%= label_tag 'current_user.nickname' %>
+	<%= image_tag 'current_user[:image_url]' %>
+  	<%= label_tag 'current_user[:nickname]' %>
 <% end %>
 
 
