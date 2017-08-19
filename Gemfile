@@ -63,3 +63,5 @@ gem 'oauth'
 gem 'omniauth-twitter'
 
 gem 'dotenv-rails'
+
+gem 'twitter'

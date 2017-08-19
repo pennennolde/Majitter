@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 
 	#引数に関連するユーザーが存在すればそれを返し、存在しなければ新規に作成する
  	def self.find_or_create_from_auth_hash(auth_hash)
-
  		provider 	= auth_hash[:provider]
     	uid 		= auth_hash[:uid]
     	nickname 	= auth_hash[:info][:nickname]

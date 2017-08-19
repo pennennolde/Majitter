@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  require 'twitter'
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -11,7 +14,8 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless session[:user_id]
-    @current_user ||= User.find_by(session[:user_id])
+    # @current_user ||= User.find_by(session[:user_id])
+    current_user ||= User.find_by(session[:user_id])
     # @current_user==@current_user でなければ @current_user=User.find_by(session[:user_id]) とする
     # find() にすると見つからなかった場合errorになるが、find_by にするとnilで返ってくる
   end
