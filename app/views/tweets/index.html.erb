@@ -1,9 +1,9 @@
-<p>Hello, MajiDouble!</p>
-
 <p>タイムラインが表示される</p>
 <p>つぶやく → テキスト入力からのグループ選択</p>
 <p>グループをつくる → フォロワーから選ぶ</p>
 
-<% if logged_in?%>
-	<%= @friend_first %>
+<% unless logged_in?%>
+	<p>ログインしてください</p>
+<% else %>
+	<%= link_to '所属グループ一覧', groups_path %>
 <% end %>

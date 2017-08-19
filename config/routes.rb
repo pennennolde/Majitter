@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/logout'                  => 'sessions#destroy'
 
   resources :tweets, only: :index
+  resources :groups, only: [:index, :new]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
