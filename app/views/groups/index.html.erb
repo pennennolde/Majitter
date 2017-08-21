@@ -1,2 +1,10 @@
 <p>所属グループ一覧</p>
+<p>自分が所属しているグループの一覧を表示</p>
+<p> → グループんの詳細画面へ</p>
+<p> → グループの新規作成</p>
+
+<% @mygroups.each do |group| %>
+	<p><%= group[:group_name] %></p>
+<% end %>
+
 <%= link_to 'グループをつくる', new_group_path %>

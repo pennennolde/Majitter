@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+	has_many :members, dependent: :destroy
+	has_many :groups, through: :members
+
+
 	#引数に関連するユーザーが存在すればそれを返し、存在しなければ新規に作成する
  	def self.find_or_create_from_auth_hash(auth_hash)
  		provider 	= auth_hash[:provider]

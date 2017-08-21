@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:user_id]
     # @current_user ||= User.find_by(session[:user_id])
-    current_user ||= User.find_by(session[:user_id])
+    current_user ||= User.find(session[:user_id])
     # @current_user==@current_user でなければ @current_user=User.find_by(session[:user_id]) とする
     # find() にすると見つからなかった場合errorになるが、find_by にするとnilで返ってくる
   end
