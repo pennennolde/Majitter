@@ -1,0 +1,11 @@
+<p>つぶやき入力</p>
+
+<%= form_for @tweet do |f| %>
+	<%= f.label 'New Tweet' %>
+	<%= f.text_area :text %><br>
+	<!-- ラジオボタン -->
+    <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
+  		<%= b.label {b.radio_button + b.text} %>
+	<% end %>
+    <%= f.submit "Tweet" %>
+<% end %>

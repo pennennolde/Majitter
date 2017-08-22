@@ -1,9 +1,12 @@
-<p>タイムラインが表示される</p>
-<p>つぶやく → テキスト入力からのグループ選択</p>
-<p>グループをつくる → フォロワーから選ぶ</p>
-
 <% unless logged_in?%>
 	<p>ログインしてください</p>
 <% else %>
+	<%= link_to 'つぶやく', new_tweet_path %>
 	<%= link_to '所属グループ一覧', groups_path %>
+
+	<p>タイムライン</p>
+	<% @tweets.each do |t| %>
+		<p><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)</p>
+	<% end %>
+
 <% end %>

@@ -4,16 +4,18 @@ class GroupsController < ApplicationController
 
 	def index
 		# 届いている招待を表示
+		# @requests = current_user.requests
 		@requests = current_user.requests
 
 		# 所属グループ一覧を表示
-		# @mygroups = Group.where(id: current_user.groups.ids)
-		@members = current_user.members
+		# @members = current_user.members
+		@member_groups = current_user.member_groups
 	end
 
 	def show
 		@group = Group.find(params[:id])
 		@request_for_me = @group.requests.find_by(user_id: current_user.id)
+		@tweets = @group.tweets if current_user.member_groups.includes(@group)
 	end
 
 	def new

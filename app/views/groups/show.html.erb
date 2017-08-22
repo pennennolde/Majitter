@@ -13,9 +13,16 @@
 		<% end %>
 <% end %>
 
-<% if @group.requests.include?(@request_for_me) %>
+<% if @request_for_me %>
 	<%= link_to '参加', "/members/#{@group.id}/edit" %>
 	<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %>
+<% else %>
+	<p>タイムライン</p>
+	<% @tweets.each do |t| %>
+		<p><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)</p>
+	<% end %>
 <% end %>
+
+
 
 

@@ -1,15 +1,15 @@
-<% unless @requests==nil %>
+<% unless @requests==[] %>
 	<p>＜グループへ招待されている一覧＞</p>
 	<% @requests.each do |r| %>
-		<p><%= r.group.group_name %> (<%= User.find_by(id: r.requester_id).nickname %>より)</p>
+		<p><%= r.group.group_name %> (<%= User.find(r.requester_id).nickname %>より)</p>
 		<%= link_to '詳細', "/groups/#{r.group.id}" %>
 	<% end %>
 <% end %>
 
 <p>＜所属グループ一覧＞</p>
-<% @members.each do |m| %>
-	<p><%= m.group[:group_name] %></p>
-	<%= link_to '詳細', "/groups/#{m.group.id}" %>
+<% @member_groups.each do |m| %>
+	<p><%= m.group_name %></p>
+	<%= link_to '詳細', "/groups/#{m.id}" %>
 <% end %>
 
 <%= link_to '[グループをつくる]', new_group_path %>

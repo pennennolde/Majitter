@@ -1,9 +1,16 @@
 class User < ActiveRecord::Base
 
-	has_many :members, dependent: :destroy
-	has_many :requests, dependent: :destroy
-	has_many :groups, through: :members
-  has_many :groups, through: :requests
+	# has_many :members, dependent: :destroy
+	# has_many :requests, dependent: :destroy
+	# has_many :groups, through: :members
+  # has_many :groups, through: :requests
+
+  has_many :members, dependent: :destroy
+  has_many :requests, dependent: :destroy
+  has_many :tweets, dependent: :destroy
+
+  has_many :member_groups, through: :members, class_name: 'Group', foreign_key: 'group_id', source: 'group'
+  has_many :request_groups, through: :requests, class_name: 'Group', foreign_key: 'group_id', source: 'group'
 
 
 
