@@ -3,8 +3,12 @@ class GroupsController < ApplicationController
 	# require 'JSON'
 
 	def index
+		# 届いている招待を表示
+		@requests = current_user.requests
+
 		# 所属グループ一覧を表示
-		@mygroups = Group.where(id: current_user.groups.ids)
+		# @mygroups = Group.where(id: current_user.groups.ids)
+		@members = current_user.members
 	end
 
 	def new
@@ -30,16 +34,28 @@ class GroupsController < ApplicationController
 
 	def create
 		# グループの新規作成
-		group = Group.create(group_params)
-		# Memberのcreateは勝手にやってくれる
-		redirect_to groups_path
+		# group = Group.create(group_params)
+		# Requestのcreateは勝手にやってくれる、なぜかMemberはやらない
+		group = Group.new(group_params)
+		group.requests.each do |r|
+			r[:requester_id] = current_user.id
+		end
+		t_or_f = group.save
+
+		member = Member.new(group_id: group.id, user_id: current_user.id)
+
+		if t_or_f && member.save
+			redirect_to groups_path
+		else
+			redirect_to new_group_path, notice: 'グループの作成に失敗しました'
+		end
 	end
 
 
 	private
 
 	def group_params
-		params.require(:group).permit(:group_name, { :user_ids => [] })
+		params.require(:group).permit(:group_name, {:user_ids => []} )
 	end
 
 end

@@ -1,10 +1,18 @@
-<p>所属グループ一覧</p>
 <p>自分が所属しているグループの一覧を表示</p>
 <p> → グループんの詳細画面へ</p>
 <p> → グループの新規作成</p>
 
-<% @mygroups.each do |group| %>
-	<p><%= group[:group_name] %></p>
+<% unless @requests==nil %>
+	<p>グループへ招待されている一覧</p>
+	<% @requests.each do |r| %>
+		<p><%= r.group[:group_name] %> (<%= User.find_by(id: r.requester_id).nickname %>より)</p>
+		<%= link_to '参加', new_group_path %>
+	<% end %>
+<% end %>
+
+<p>所属グループ一覧</p>
+<% @members.each do |m| %>
+	<p><%= m.group[:group_name] %></p>
 <% end %>
 
 <%= link_to 'グループをつくる', new_group_path %>

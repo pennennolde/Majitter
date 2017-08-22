@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
 
 	has_many :members, dependent: :destroy
+	has_many :requests, dependent: :destroy
 	has_many :groups, through: :members
+  has_many :groups, through: :requests
+
 
 
 	#引数に関連するユーザーが存在すればそれを返し、存在しなければ新規に作成する
