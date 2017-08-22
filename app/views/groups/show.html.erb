@@ -1,0 +1,21 @@
+<p>＜グループ詳細＞</p>
+
+<p>グループ名 : <%= @group.group_name %></p>
+<P>メンバー : </P>
+	<% @group.members.each do |m| %>
+		<p><%= m.user.nickname %></p>
+	<% end %>
+
+<% unless @group.requests==[] %>
+	<p>招待中 : </p>
+		<% @group.requests.each do |r| %>
+			<p><%= r.user.nickname %></p>
+		<% end %>
+<% end %>
+
+<% if @group.requests.include?(@request_for_me) %>
+	<%= link_to '参加', "/members/#{@group.id}/edit" %>
+	<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %>
+<% end %>
+
+

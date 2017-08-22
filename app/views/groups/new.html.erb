@@ -1,4 +1,4 @@
-<p>グループ新規作成　フォロワーから選んで → (フォロワー)かつ(Majitterユーザー) の表示</p>
+<p>＜グループ新規作成　フォロワーから選んで → (フォロワー)かつ(Majitterユーザー) の表示＞</p>
 
 
 <p><%= @friends[:users][0][:id] %> : <%= @friends[:users][0][:name] %>@<%= @friends[:users][0][:screen_name] %></p>
@@ -17,5 +17,5 @@
     <%= f.collection_check_boxes(:user_ids, User.all, :id, :nickname) do |m| %> <!--第1引数を省略したことによってエラーが解決-->
     	<%= m.label { m.check_box + m.text } %><br>
     <% end %> 
-    <%= f.submit "グループをつくる" %>
+    <%= f.submit "[グループをつくる]" %>
 <% end %>

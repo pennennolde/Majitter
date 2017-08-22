@@ -11,6 +11,11 @@ class GroupsController < ApplicationController
 		@members = current_user.members
 	end
 
+	def show
+		@group = Group.find(params[:id])
+		@request_for_me = @group.requests.find_by(user_id: current_user.id)
+	end
+
 	def new
 		# フォロワーからメンバーを選んでグループをつくる
 		if logged_in?
