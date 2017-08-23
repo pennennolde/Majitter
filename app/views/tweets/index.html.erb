@@ -6,7 +6,7 @@
 
 	<p>タイムライン</p>
 	<% @tweets.each do |t| %>
-		<p><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)</p>
+		<%= render partial: 'tweet', locals: {t: t} %>
 	<% end %>
 
 <% end %>

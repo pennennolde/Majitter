@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
   # view でも使えるようになる
 
+
+  before_action :require_login
+
+
+
   private
 
   def current_user
@@ -32,6 +37,11 @@ class ApplicationController < ActionController::Base
       config.access_token        = session[:oauth_token]
       config.access_token_secret = session[:oauth_token_secret]
     end
+  end
+
+  def require_login
+    flash[:error] = "You must be logged in to access this section"
+    redirect_to root_path unless logged_in?
   end
 
 end

@@ -2,25 +2,31 @@
 
 <p>グループ名 : <%= @group.group_name %></p>
 <P>メンバー : </P>
-	<% @group.members.each do |m| %>
-		<p><%= m.user.nickname %></p>
+	<% @group.member_users.each do |m| %>
+		<p><%= m.nickname %></p>
 	<% end %>
 
 <% unless @group.requests==[] %>
 	<p>招待中 : </p>
-		<% @group.requests.each do |r| %>
-			<p><%= r.user.nickname %></p>
+		<% @group.accepters.each do |a| %>
+			<p><%= a.nickname %></p>
 		<% end %>
+<% end %>
+
+<% if @i_am_member %>
+	<p>グループタイムライン</p>
+	<% if @tweets %>
+		<% @tweets.each do |t| %>
+			<%= render partial: 'tweets/tweet', locals: {t: t} %>
+		<% end %>
+	<% else %>
+		<p>tweetはまだありません</p>
+	<% end %>
 <% end %>
 
 <% if @request_for_me %>
 	<%= link_to '参加', "/members/#{@group.id}/edit" %>
 	<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %>
-<% else %>
-	<p>タイムライン</p>
-	<% @tweets.each do |t| %>
-		<p><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)</p>
-	<% end %>
 <% end %>
 
 

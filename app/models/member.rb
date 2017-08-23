@@ -6,6 +6,6 @@ class Member < ActiveRecord::Base
 	belongs_to :group
 	belongs_to :user
 
-	has_many :tweets
+	# has_many :tweets, -> { order(created_at: :desc) }
 
 end

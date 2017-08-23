@@ -1,15 +1,19 @@
 class TweetsController < ApplicationController
 
+	skip_before_action :require_login, only: [:index]
+
 	def index
 		# タイムライン
 		if logged_in?
-			mem_g = current_user.member_groups
+			mem_g = current_user.member_groups.includes([:tweets, :member_users])
 			@tweets = []
 			mem_g.each do |g|
 				g.tweets.each do |t|
 					@tweets << t
 				end
 			end
+
+			# @tweets = current_user.member_groups.tweets.includes([:group, :user]) # ← エラー、ダメ
 		end
 	end
 
@@ -23,7 +27,6 @@ class TweetsController < ApplicationController
 		# つぶやき送信
 		# tweet = Tweet.new({user_id: current_user.id}, tweet_params)
 		tweet = Tweet.new(tweet_params)
-		tweet[:user_id] = current_user.id
 		if tweet.save
 			redirect_to root_path
 		else
@@ -35,7 +38,7 @@ class TweetsController < ApplicationController
 	private
 
 	def tweet_params
-		params.require(:tweet).permit(:text, :group_id)
+		params.require(:tweet).permit(:text, :group_id).merge(user_id: current_user.id)
 	end
 
 end
