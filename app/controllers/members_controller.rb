@@ -7,7 +7,9 @@ class MembersController < ApplicationController
 			member = Member.new(group_id: params[:id], user_id: current_user.id)
 			if member.save
 				request.destroy
-				redirect_to groups_path and return, notice: 'グループに参加しました'
+				# redirect_to groups_path and return, notice: 'グループに参加しました'
+				redirect_to groups_path and return
+
 			else
 				redirect_to groups_path, notice: 'グループへの参加に失敗しました'
 			end

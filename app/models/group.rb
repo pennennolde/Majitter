@@ -19,5 +19,5 @@ class Group < ActiveRecord::Base
 
 
 	# accepts_nested_attributes_for :members,  :allow_destroy => true # allow_destroy: true ← なぜかエラー　# 関連項目も含めて一度に保存、削除する
-	accepts_nested_attributes_for :requests,  :allow_destroy => true
+	# accepts_nested_attributes_for :requests,  :allow_destroy => true
 end

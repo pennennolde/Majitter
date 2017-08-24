@@ -5,7 +5,9 @@ class RequestsController < ApplicationController
 		request = Request.find_by(group_id: params[:id], user_id: current_user.id)
 		unless request==nil
 			request.destroy
-			redirect_to groups_path and return, notice: 'グループ招待を拒否しました'
+			# redirect_to groups_path and return, notice: 'グループ招待を拒否しました'
+			redirect_to groups_path and return
+
 		else
 			redirect_to root_path, notice: 'アクセスが許可されていないページです'
 		end
