@@ -15,7 +15,7 @@
 	<%= f.label 'グループ名' %>
 	<%= f.text_field :group_name %><br>
 	<%= f.fields_for :requests do |r| %>
-    	<%= r.collection_check_boxes(:user_ids, User.all, :id, :nickname) do |m| %> <!--第1引数を省略したことによってエラーが解決-->
+		<%= r.collection_check_boxes(:user_ids, User.all, :id, :nickname) do |m| %> <!--第1引数を省略したことによってエラーが解決-->
     		<%= m.label { m.check_box + m.text } %><br>
     	<% end %>
     <% end %> 

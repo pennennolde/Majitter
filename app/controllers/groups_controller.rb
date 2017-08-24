@@ -48,9 +48,9 @@ class GroupsController < ApplicationController
 		# group = Group.create(group_params)
 		# Requestのcreateは勝手にやってくれる、なぜかMemberはやらない
 		group = Group.new(group_params)
-		group.requests.each do |r|
-			r[:requester_id] = current_user.id
-		end
+		# group.requests.each do |r|
+		# 	r[:requester_id] = current_user.id
+		# end
 		saved = group.save
 
 		member = Member.new(group_id: group.id, user_id: current_user.id)
