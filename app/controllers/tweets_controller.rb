@@ -5,13 +5,8 @@ class TweetsController < ApplicationController
 	def index
 		# タイムライン
 		if logged_in?
-			mem_g = current_user.member_groups.includes([:tweets, :member_users])
-			@tweets = []
-			mem_g.each do |g|
-				g.tweets.each do |t|
-					@tweets << t
-				end
-			end
+			my_g_ids = current_user.member_groups.ids
+			@tweets = Tweet.where(group_id: my_g_ids).order(created_at: :desc).includes([:group, :user])
 
 			# @tweets = current_user.member_groups.tweets.includes([:group, :user]) # ← エラー、ダメ
 		end

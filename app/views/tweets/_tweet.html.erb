@@ -1,1 +1,1 @@
-<p><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)[<%= time_ago_in_words t.created_at %>]</p>
+<p><%= image_tag t.user.image_url %><%= t.user.nickname %> : <%= t.text %> (<%= t.group.group_name %>)[<%= time_ago_in_words t.created_at %>]</p>
