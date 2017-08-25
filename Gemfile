@@ -65,3 +65,5 @@ gem 'omniauth-twitter'
 gem 'dotenv-rails'
 
 gem 'twitter'
+
+gem 'bootstrap-sass'
