@@ -1,15 +1,49 @@
-<% unless @requests==[] %>
-	<p>＜グループへ招待されている一覧＞</p>
-	<% @requests.each do |r| %>
-		<p><%= r.group.group_name %> (<%= r.requester.nickname %>より)</p>
-		<%= link_to '詳細', "/groups/#{r.group.id}" %>
+
+
+
+<div class="row">
+	<div class="col-xs-0 col-sm-3"></div>
+  	<div class="col-xs-12 col-sm-6">
+  		<ul class="nav nav-tabs">
+  			<li role="presentation" class="active"><a href="/groups">グループ</a></li>
+			<li role="presentation"><a href="/requests">リクエスト</a></li>
+ 		</ul>
+  	</div>
+  	<div class="col-xs-0 col-sm-3"></div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-xs-0 col-sm-3"></div>
+  	<div class="col-xs-12 col-sm-6"><p><%= link_to '[グループをつくる]', new_group_path %></p></div>
+  	<div class="col-xs-0 col-sm-3"></div>
+</div>
+
+
+<% unless @member_groups==[] %>
+
+	<div class="row">
+		<div class="col-xs-0 col-sm-3"></div>
+  		<div class="col-xs-12 col-sm-6"><p>＜所属グループ一覧＞</p></div>
+  		<div class="col-xs-0 col-sm-3"></div>
+	</div>
+	<% @member_groups.each do |g| %>
+		<div class="row">
+			<div class="col-xs-0 col-sm-3"></div>
+  			<div class="col-xs-12 col-sm-6"><%= render partial: 'group', locals: {g: g} %></div>
+  			<div class="col-xs-0 col-sm-3"></div>
+  		</div>
 	<% end %>
+
+<% else %>
+	<div class="row">
+		<div class="col-xs-0 col-sm-3"></div>
+  		<div class="col-xs-12 col-sm-6"><p>所属グループはまだありません。グループを作成して見ましょう！</p></div>
+  		<div class="col-xs-0 col-sm-3"></div>
+	</div>
+
 <% end %>
 
-<p>＜所属グループ一覧＞</p>
-<% @member_groups.each do |g| %>
-	<p><%= g.group_name %></p>
-	<%= link_to '詳細', "/groups/#{g.id}" %>
-<% end %>
 
-<%= link_to '[グループをつくる]', new_group_path %>
+

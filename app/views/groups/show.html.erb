@@ -1,17 +1,49 @@
-<p>＜グループ詳細＞</p>
+
+<div class="row">
+	<div class="col-xs-0 col-sm-3"></div>
+
+  	<div class="col-xs-12 col-sm-6">
+  		<div class="jumbotron">
+  			<div class="container">
+  				<h1><%= @group.group_name %></h1>
+  				<% if @request_for_me %>
+					<!-- <%= link_to '参加', "/members/#{@group.id}/edit" %>
+					<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %> -->
+					<p><a class="btn btn-primary" href="/members/#{@group.id}/edit" role="button">参加</a> <a class="btn btn-default" href="/requests/#{@group.id}" role="button"　method="delete">拒否</a></p>
+				<% end %>
+			</div>
+		</div>
+  	</div>
+
+  	<div class="col-xs-0 col-sm-3"></div>
+</div>
+
+
+
+
+<div class="row">
+	<div class="col-xs-0 col-sm-3"></div>
+  	
+  	<div class="col-xs-12 col-sm-6">
+  		<%= render 'members' %>
+  	</div>
+  	
+  	<div class="col-xs-0 col-sm-3"></div>
+</div>
+
+
+
 
 <p>グループ名 : <%= @group.group_name %></p>
 <P>メンバー : </P>
-	<% @group.member_users.each do |m| %>
-		<p><%= m.nickname %></p>
-	<% end %>
+
 
 <% unless @group.requests==[] %>
 	<p>招待中 : </p>
-		<% @group.accepters.each do |a| %>
+<% @group.accepters.each do |a| %>
 			<p><%= a.nickname %></p>
 		<% end %>
-<% end %>
+<% end %>		
 
 <% if @i_am_member %>
 	<p>グループタイムライン</p>

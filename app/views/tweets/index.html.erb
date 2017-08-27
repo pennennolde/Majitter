@@ -1,12 +1,19 @@
 <% unless logged_in?%>
 	<p>ログインしてください</p>
-<% else %>
-	<%= link_to 'つぶやく', new_tweet_path %>
-	<%= link_to '所属グループ一覧', groups_path %>
 
-	<p>タイムライン</p>
-	<% @tweets.each do |t| %>
-		<%= render partial: 'tweet', locals: {t: t} %>
-	<% end %>
+<% else %>
+
+	
+	<!-- <p>タイムライン</p> -->
+	<div class="tweet-index">
+		<%= render 'tweet' %>
+	</div>
+	
 
 <% end %>
+
+
+
+
+
+<!-- partial: 'tweet', locals: {tweets: @tweets} -->

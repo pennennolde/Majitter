@@ -1,5 +1,10 @@
 class RequestsController < ApplicationController
 
+	def index
+		# 届いている招待を表示
+		@requests = current_user.accepter_requests.includes([:group, :requester])
+	end
+
 	def destroy
 		# グループ参加拒否 (グループ招待(request)を拒否)
 		request = Request.find_by(group_id: params[:id], user_id: current_user.id)

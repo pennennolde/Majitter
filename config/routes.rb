@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :tweets,    only: [:index, :new, :create]
   resources :groups,    only: [:index, :show, :new, :create]
-  resources :requests,  only: [:destroy]
+  resources :requests,  only: [:index, :destroy]
   resources :members,   only: [:edit]
 
 

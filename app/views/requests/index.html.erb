@@ -1,0 +1,37 @@
+
+
+<div class="row">
+	<div class="col-xs-0 col-sm-3"></div>
+  	<div class="col-xs-12 col-sm-6">
+  		<ul class="nav nav-tabs">
+  			<li role="presentation"><a href="/groups">グループ</a></li>
+ 			<li role="presentation" class="active"><a href="/requests">リクエスト</a></li>
+ 		</ul>
+  	</div>
+  	<div class="col-xs-0 col-sm-3"></div>
+</div>
+
+
+
+
+<% unless @requests==[] %>
+	<div class="row">
+		<div class="col-xs-0 col-sm-3"></div>
+  		<div class="col-xs-12 col-sm-6"><p>＜招待されているグループ一覧＞</p></div>
+  		<div class="col-xs-0 col-sm-3"></div>
+	</div>
+	<% @requests.each do |r| %>
+		<div class="row">
+			<div class="col-xs-0 col-sm-3"></div>
+  			<div class="col-xs-12 col-sm-6"><%= render partial: 'request', locals: {r: r} %></div>
+  			<div class="col-xs-0 col-sm-3"></div>
+  		</div>
+	<% end %>
+
+<% else %>
+	<div class="row">
+		<div class="col-xs-0 col-sm-3"></div>
+  		<div class="col-xs-12 col-sm-6"><p>リクエストはありません。</p></div>
+  		<div class="col-xs-0 col-sm-3"></div>
+	</div>
+<% end %>

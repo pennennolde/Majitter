@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(@tweet, remote: true) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <h4 class="modal-title" id="exampleModalLabel">New Tweet</h4> -->
+        <h4 class="modal-title">New Tweet</h4>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <%= f.label :text %>
+          <%= f.text_area :text %><br>
+          <!-- ラジオボタン -->
+          <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
+            <%= b.label {b.radio_button + b.text} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <%= f.submit "Tweet", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

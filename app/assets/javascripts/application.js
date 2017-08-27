@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //
+// Bootstrap Sass
 //= require bootstrap-sprockets
 //

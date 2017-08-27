@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 
 	def index
 		# 届いている招待を表示
-		@requests = current_user.accepter_requests.includes([:group, :requester])
+		# @requests = current_user.accepter_requests.includes([:group, :requester])
 		# 所属グループ一覧を表示
 		@member_groups = current_user.member_groups
 	end

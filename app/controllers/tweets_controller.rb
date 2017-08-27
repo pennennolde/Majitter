@@ -22,11 +22,15 @@ class TweetsController < ApplicationController
 		# つぶやき送信
 		# tweet = Tweet.new({user_id: current_user.id}, tweet_params)
 		tweet = Tweet.new(tweet_params)
-		if tweet.save
-			redirect_to root_path
-		else
-			redirect_to new_tweet_path, notice: 'Tweetに失敗しました'
-		end
+		tweet.save
+		# if tweet.save
+		# 	redirect_to root_path
+		# else
+		# 	redirect_to new_tweet_path, notice: 'Tweetに失敗しました'
+		# end
+
+		my_g_ids = current_user.member_groups.ids
+		@tweets = Tweet.where(group_id: my_g_ids).order(created_at: :desc).includes([:group, :user])
 	end
 
 
