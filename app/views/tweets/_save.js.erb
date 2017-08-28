@@ -1,2 +1,15 @@
-$(".tweet-index").html("<%= escape_javascript(render 'tweet') %>")
+$(".timeline").html("<%= escape_javascript(render @tweets) %>")
+// var tweet_first = <%= @tweets.first %>;
+// var tweets = new Array;
+// <%= @tweets %>.each(function(tweet) {
+//     if(tweet.group.id==tweet_first.group.id) {
+//     	tweets.push(tweet);
+//     }
+// });
+// @tweets = tweets;
+
+// ↑　@tweetsの中身変わらず…断念
+
+// $(".group-timeline").html("<%= escape_javascript(render @tweets) %>")
+
 $("#tweet-modal").modal("hide")

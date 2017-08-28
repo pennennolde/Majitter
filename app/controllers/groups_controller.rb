@@ -36,6 +36,24 @@ class GroupsController < ApplicationController
 
 		# フォロワー情報を取ってきて、Majitterユーザーだけ表示する(グループメンバー候補)
 
+
+
+		# 本番用
+		followers_hash = client.followers.to_h
+		followers = followers_hash[:users]
+
+		maji_uids = User.pluck(:uid) # pluck: 任意のカラムの値の配列をつくる
+		@maji_followers = []
+
+		followers.each do |f|
+			f_user = User.find_by(uid: f[:id_str])
+			unless f_user==nil 
+				# f[:maji_id] = f_user.id
+				# @maji_followers << f
+				@maji_followers << f_user
+			end
+		end
+
 		@group = Group.new
 	end
 
@@ -48,7 +66,7 @@ class GroupsController < ApplicationController
 		gsaved = group.save
 		member = Member.new(group_id: group.id, user_id: current_user.id)
 		if gsaved && member.save
-			redirect_to groups_path
+			redirect_to "/groups/#{group.id}"
 		else
 			redirect_to new_group_path, notice: 'グループの作成に失敗しました'
 		end

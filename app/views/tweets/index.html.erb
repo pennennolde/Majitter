@@ -1,3 +1,5 @@
+
+
 <% unless logged_in?%>
 	<p>ログインしてください</p>
 
@@ -5,8 +7,8 @@
 
 	
 	<!-- <p>タイムライン</p> -->
-	<div class="tweet-index">
-		<%= render 'tweet' %>
+	<div class="timeline">
+		<%= render @tweets %> 
 	</div>
 	
 
@@ -16,4 +18,4 @@
 
 
 
-<!-- partial: 'tweet', locals: {tweets: @tweets} -->
+<!-- render partial: 'tweet', locals: {tweets: @tweets} -->

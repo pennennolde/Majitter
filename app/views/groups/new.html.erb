@@ -1,23 +1,33 @@
-<p>＜グループ新規作成　フォロワーから選んで → (フォロワー)かつ(Majitterユーザー) の表示＞</p>
+
+<div class="row">
+	<div class="col-xs-0 col-sm-2"></div>
+	
+  	<div class="col-xs-12 col-sm-8">
+  	
+		<% unless @maji_followers==[] %>
+
+			<%= form_for @group do |f| %>
+				<%= f.label 'グループ名' %>
+				<%= f.text_field :group_name %><br>
+				<%= f.label '招待' %>
+				<%= f.collection_check_boxes(:accepter_ids, @maji_followers, :id, :nickname) do |r| %>
+				<!-- 先頭に f をつけるなら、第一引数は省略せねばならないっぽい -->
+					<%= r.label { r.check_box + r.text } %>
+				<% end %>
+    			<%= f.submit "つくる" %>
+    		<% end %>
+
+    		<% @maji_followers.each do |f| %>
+				<p><%= image_tag f[:image_url] %>@<%= f[:nickname] %></p>
+			<% end %>
 
 
-<p><%= @friends[:users][0][:id] %> : <%= @friends[:users][0][:name] %>@<%= @friends[:users][0][:screen_name] %></p>
+		<% else %>
+			<p>Majitterを利用しているフォロワーがいないようです。</p>
+			<p>フォロワーにMajitterを紹介してみましょう！</p>
+		<% end %>
+	</div>
+	
+	<div class="col-xs-0 col-sm-2"></div>
+</div>
 
-<% @friends[:users].each do |friend| %>
-	<p><%= image_tag friend[:profile_image_url] %><%= friend[:name] %>@<%= friend[:screen_name] %></p>
-<% end %>
-
-
-
-
-
-<%= form_for @group do |f| %>
-	<%= f.label :group_name %>
-	<%= f.text_field :group_name %><br>
-	<%= f.label :requests %>
-	<%= f.collection_check_boxes(:accepter_ids, User.all, :id, :nickname) do |r| %>
-	<!-- 先頭に f をつけるなら、第一引数は省略せねばならないっぽい -->
-		<%= r.label { r.check_box + r.text } %>
-	<% end %>
-    <%= f.submit "つくる" %>
-<% end %>
