@@ -42,16 +42,11 @@ class GroupsController < ApplicationController
 		followers_hash = client.followers.to_h
 		followers = followers_hash[:users]
 
-		maji_uids = User.pluck(:uid) # pluck: 任意のカラムの値の配列をつくる
 		@maji_followers = []
 
 		followers.each do |f|
 			f_user = User.find_by(uid: f[:id_str])
-			unless f_user==nil 
-				# f[:maji_id] = f_user.id
-				# @maji_followers << f
-				@maji_followers << f_user
-			end
+			@maji_followers << f_user unless f_user==nil
 		end
 
 		@group = Group.new

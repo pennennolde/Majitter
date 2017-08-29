@@ -1,13 +1,19 @@
 
 <div class="jumbotron">
-  	<div class="container-fluid">
+  	<!-- <div class="container-fluid"> -->
+    <div class="row">
+    <div class="col-xs-0 col-sm-1"></div>
+    <div class="col-xs-12 col-sm-11">
   		<h1><%= @group.group_name %></h1>
   		<% if @request_for_me %>
-			<!-- <%= link_to '参加', "/members/#{@group.id}/edit" %>
-			<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %> -->
-			<p><a class="btn btn-primary" href="/members/#{@group.id}/edit" role="button">参加</a> <a class="btn btn-default" href="/requests/#{@group.id}" role="button"　method="delete">拒否</a></p>
-		<% end %>
-	</div>
+			 　<!-- <%= link_to '参加', "/members/#{@group.id}/edit" %>
+			 　<%= link_to '拒否', "/requests/#{@group.id}", method: :delete %> -->
+			 　<p><a class="btn btn-primary" href="/members/#{@group.id}/edit" role="button">参加</a> <a class="btn btn-default" href="/requests/#{@group.id}" role="button"　method="delete">拒否</a></p>
+		  <% end %>
+    </div>
+    <div class="col-xs-0 col-sm-1"></div>
+    </div>
+	<!-- </div> -->
 </div>
 
 
@@ -16,7 +22,7 @@
 
 <div class="row">
 	<div class="col-xs-0 col-sm-2"></div>
-  	
+
   	<div class="col-xs-12 col-sm-8">		
   		<%= render 'members' %>
   	</div>
@@ -31,7 +37,11 @@
 <% if @i_am_member %>
 	<div class="row">
 		<div class="col-xs-0 col-sm-2"></div>
-  	<div class="col-xs-12 col-sm-8"><h2>Group Timeline</h2></div>
+  	<div class="col-xs-12 col-sm-8">
+      <div class="page-header">
+        <h2>Group Timeline</h2>
+      </div>
+    </div>
   	<div class="col-xs-0 col-sm-2"></div>
   </div>
 

@@ -16,24 +16,23 @@
 
 <div class="row">
 	<div class="col-xs-0 col-sm-2"></div>
-  	<div class="col-xs-12 col-sm-8"><p><%= link_to '[グループをつくる]', new_group_path %></p></div>
-  	<div class="col-xs-0 col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8">
+    <button type="button" class="btn btn-default" href="/groups/new">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> グループをつくる
+    </button>
+  </div>
+  <div class="col-xs-0 col-sm-2"></div>
 </div>
 
 
 <% unless @member_groups==[] %>
 
-	<div class="row">
-		<div class="col-xs-0 col-sm-2"></div>
-  		<div class="col-xs-12 col-sm-8"><p>＜所属グループ一覧＞</p></div>
-  		<div class="col-xs-0 col-sm-2"></div>
-	</div>
 	<% @member_groups.each do |g| %>
 		<div class="row">
 			<div class="col-xs-0 col-sm-2"></div>
-  			<div class="col-xs-12 col-sm-8"><%= render partial: 'group', locals: {g: g} %></div>
-  			<div class="col-xs-0 col-sm-2"></div>
-  		</div>
+  		<div class="col-xs-12 col-sm-8"><%= render partial: 'group', locals: {g: g} %></div>
+  		<div class="col-xs-0 col-sm-2"></div>
+  	</div>
 	<% end %>
 
 <% else %>

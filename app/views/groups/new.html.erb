@@ -1,26 +1,48 @@
 
 <div class="row">
 	<div class="col-xs-0 col-sm-2"></div>
-	
+
   	<div class="col-xs-12 col-sm-8">
   	
 		<% unless @maji_followers==[] %>
 
-			<%= form_for @group do |f| %>
-				<%= f.label 'グループ名' %>
-				<%= f.text_field :group_name %><br>
-				<%= f.label '招待' %>
-				<%= f.collection_check_boxes(:accepter_ids, @maji_followers, :id, :nickname) do |r| %>
-				<!-- 先頭に f をつけるなら、第一引数は省略せねばならないっぽい -->
-					<%= r.label { r.check_box + r.text } %>
-				<% end %>
-    			<%= f.submit "つくる" %>
+			<%= form_for(@group, class: "form-horizontal") do |f| %>
+				<div class="form_group">
+					<%= f.label 'グループ名', class: "col-xs-12 col-sm-3 control-label", style: "padding-bottom:20px" %>
+					<div class="col-xs-12 col-sm-9" style="padding-bottom:20px" >
+						<%= f.text_field :group_name, class: "form-control"%>
+					</div>
+				</div>
+				<div class="form_group">
+					<%= f.label 'メンバー', class: "col-xs-12 col-sm-3 control-label" %>
+					<div class="col-xs-12 col-sm-9">
+						<%= f.collection_check_boxes(:accepter_ids, @maji_followers, :id, :user_name) do |r| %>
+						<!-- 先頭に f をつけるなら、第一引数は省略せねばならないっぽい -->
+							
+							<div class="panel panel-default active">
+ 								<div class="panel-body">
+  									<div class="row">
+    									
+											<div class="col-xs-1 col-sm-1">
+												<%= r.check_box(class: "check_box") %>
+											</div>
+											<div class="col-xs-9 col-sm-9">
+												<%= image_tag r.object.image_url %> <%= r.object.account_name %>@<%= r.object.user_name %>
+											</div>
+										
+  									</div>
+								</div>
+
+							</div>
+						<% end %>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="col-xs-offset-0 col-sm-offset-3 col-xs-12 col-sm-9">
+    					<%= f.submit "つくる", class: "btn btn-default" %>
+    				</div>
+   				</div>
     		<% end %>
-
-    		<% @maji_followers.each do |f| %>
-				<p><%= image_tag f[:image_url] %>@<%= f[:nickname] %></p>
-			<% end %>
-
 
 		<% else %>
 			<p>Majitterを利用しているフォロワーがいないようです。</p>

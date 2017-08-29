@@ -23,17 +23,30 @@ class User < ActiveRecord::Base
 
 
 
+
 	#引数に関連するユーザーが存在すればそれを返し、存在しなければ新規に作成する
  	def self.find_or_create_from_auth_hash(auth_hash)
- 		provider 	= auth_hash[:provider]
-    	uid 		= auth_hash[:uid]
-    	nickname 	= auth_hash[:info][:nickname]
-    	image_url 	= auth_hash[:info][:image]
 
-    	self.find_or_create_by(provider: provider, uid: uid) do |user|
-      		user.nickname = nickname
-      		user.image_url = image_url
-    	end
+ 		provider   	   = auth_hash[:provider]
+    uid 		       = auth_hash[:uid]
+    user_name 	   = auth_hash[:info][:nickname]
+    account_name   = auth_hash[:info][:name]
+    image_url 	   = auth_hash[:info][:image]
+    description    = auth_hash[:info][:description]
+    banner_url     = auth_hash[:extra][:raw_info][:profile_banner_url]
+
+
+    user = self.find_or_create_by(provider: provider, uid: uid)
+
+   	user.user_name = user_name        unless user.user_name == user_name
+    user.account_name = account_name  unless user.account_name == account_name
+   	user.image_url = image_url        unless user.image_url == image_url
+    user.description = description    unless user.description == description
+    user.banner_url = banner_url unless user.banner_url == banner_url
+
+    user.save
+
+    return user
  	end
 
 end

@@ -10,12 +10,14 @@
       </div>
       <div class="modal-body">
         <div class="field">
-          <%= f.label :text %>
-          <%= f.text_area :text %><br>
-          <!-- ラジオボタン -->
-          <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
-            <%= b.label {b.radio_button + b.text} %>
-          <% end %>
+          <div class="form-group">
+            <!-- <%= f.label :text %> -->
+            <%= f.text_area :text, class: "form-control" %><br>
+          </div>
+            <!-- ラジオボタン -->
+            <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
+              <%= b.label {b.radio_button + b.text} %>
+            <% end %>
         </div>
       </div>
       <div class="modal-footer">

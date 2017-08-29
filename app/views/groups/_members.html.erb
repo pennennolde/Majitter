@@ -1,22 +1,26 @@
 
-<h2>Members</h2>
+<div class="page-header">
+	<h2>Members</h2>
+</div>
 
 <div class="row">
 	<% @group.member_users.each do |m| %>
 		<div class="col-sx-4 col-sm-4">
 			<%= image_tag m.image_url %>
-			<p>@<%= m.nickname %></p>
+			<p>@<%= m.user_name %></p>
 		</div>
 	<% end %>
 </div>
 
 <% unless @group.requests==[] %>
-	<h2>招待中</h2>
+	<div class="page-header">
+		<h2>招待中</h2>
+	</div>
 	<div class="row">
 		<% @group.accepters.each do |a| %>
 			<div class="col-sx-4 col-sm-4">
 				<%= image_tag a.image_url %>
-				<p>@<%= a.nickname %></p>
+				<p>@<%= a.user_name %></p>
 			</div>
 		<% end %>
 	</div>
