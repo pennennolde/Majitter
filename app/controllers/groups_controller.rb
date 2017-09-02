@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 	end
 
 	def show
-		@group = Group.includes([:member_users, :tweets]).find(params[:id])
+		@group = Group.includes([:member_users, :tweets]).find_by(id: params[:id])
 		if @group.member_users.include?(current_user)
 			@i_am_member = true
 			@tweets = @group.tweets
@@ -63,15 +63,16 @@ class GroupsController < ApplicationController
 		if gsaved && member.save
 			redirect_to "/groups/#{group.id}"
 		else
-			redirect_to new_group_path, notice: 'グループの作成に失敗しました'
+			# redirect_to new_group_path, notice: 'グループの作成に失敗しました'
+			render 'new'
 		end
 	end
 
 
 	private
 
-	def group_params
-		params.require(:group).permit(:group_name, {:accepter_ids => []} )
-	end
+		def group_params
+			params.require(:group).permit(:group_name, {:accepter_ids => []} )
+		end
 
 end

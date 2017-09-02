@@ -17,31 +17,31 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user
-    return unless session[:user_id]
-    # @current_user ||= User.find_by(session[:user_id])
-    current_user ||= User.find(session[:user_id])
-    # @current_user==@current_user でなければ @current_user=User.find_by(session[:user_id]) とする
-    # find() にすると見つからなかった場合errorになるが、find_by にするとnilで返ってくる
-  end
-
-  def logged_in?
-    !!session[:user_id]
-    # nil の場合、false を返す
-  end
-
-  def client
-    Twitter::REST::Client.new do |config|
-      config.consumer_key        = Rails.application.secrets.twitter_api_key#ENV["TWITTER_API_KEY"]
-      config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-      config.access_token        = session[:oauth_token]
-      config.access_token_secret = session[:oauth_token_secret]
+    def current_user
+      return unless session[:user_id]
+      # @current_user ||= User.find_by(session[:user_id])
+      current_user ||= User.find(session[:user_id])
+      # @current_user==@current_user でなければ @current_user=User.find_by(session[:user_id]) とする
+      # find() にすると見つからなかった場合errorになるが、find_by にするとnilで返ってくる
     end
-  end
 
-  def require_login
-    flash[:error] = "You must be logged in to access this section"
-    redirect_to root_path unless logged_in?
-  end
+    def logged_in?
+      !!session[:user_id]
+      # nil の場合、false を返す
+    end
+
+    def client
+      Twitter::REST::Client.new do |config|
+        config.consumer_key        = Rails.application.secrets.twitter_api_key#ENV["TWITTER_API_KEY"]
+        config.consumer_secret     = ENV["TWITTER_API_SECRET"]
+        config.access_token        = session[:oauth_token]
+        config.access_token_secret = session[:oauth_token_secret]
+      end
+    end
+
+    def require_login
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to root_path unless logged_in?
+    end
 
 end

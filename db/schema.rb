@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829094238) do
+ActiveRecord::Schema.define(version: 20170902054254) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "group_name",      limit: 255, null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170829094238) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "members", ["group_id", "user_id"], name: "index_members_on_group_id_and_user_id", unique: true, using: :btree
   add_index "members", ["group_id"], name: "index_members_on_group_id", using: :btree
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170829094238) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "requests", ["group_id", "user_id"], name: "index_requests_on_group_id_and_user_id", unique: true, using: :btree
   add_index "requests", ["group_id"], name: "index_requests_on_group_id", using: :btree
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
 
@@ -54,7 +56,6 @@ ActiveRecord::Schema.define(version: 20170829094238) do
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",     limit: 255,   null: false
     t.string   "uid",          limit: 255,   null: false
     t.string   "user_name",    limit: 255,   null: false
     t.string   "account_name", limit: 255
@@ -65,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170829094238) do
     t.string   "banner_url",   limit: 255
   end
 
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
