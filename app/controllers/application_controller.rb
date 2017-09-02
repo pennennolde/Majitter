@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     def current_user
       return unless session[:user_id]
       # @current_user ||= User.find_by(session[:user_id])
-      current_user ||= User.find(session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id])
       # @current_user==@current_user でなければ @current_user=User.find_by(session[:user_id]) とする
       # find() にすると見つからなかった場合errorになるが、find_by にするとnilで返ってくる
     end
@@ -40,8 +40,10 @@ class ApplicationController < ActionController::Base
     end
 
     def require_login
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to root_path unless logged_in?
+      unless logged_in?
+        flash[:danger] = "ログインしてください！"
+        redirect_to root_path
+      end 
     end
 
 end

@@ -5,8 +5,8 @@ class Member < ActiveRecord::Base
 
 	# has_many :tweets, -> { order(created_at: :desc) }
 
-	validate :group_id, presence: true, uniqueness: { scope: [:user_id] }
-    validate :user_id, presence: true
+	validates :group_id, presence: true, uniqueness: { scope: [:user_id] }
+    validates :user_id, presence: true
 
 
 

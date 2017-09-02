@@ -10,14 +10,15 @@ class SessionsController < ApplicationController
     	session[:oauth_token]			= auth_hash['credentials']['token']
 	    session[:oauth_token_secret]	= auth_hash['credentials']['secret']
     	# redirect_to root_path and return, notice: 'ログインしました'
-    	redirect_to root_path, notice: 'ログインしました'
+    	redirect_to root_path
 
   	end
 
   	def destroy
 		reset_session
 		# redirect_to root_path and return, notice: 'ログアウトしました'
-		redirect_to root_path, notice: 'ログアウトしました'
+		flash[:success] = 'ログアウトしました'
+		redirect_to root_path #, notice: 'ログアウトしました'
 
 	end
 

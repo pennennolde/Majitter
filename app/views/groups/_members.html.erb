@@ -12,7 +12,7 @@
 	<% end %>
 </div>
 
-<% unless @group.requests==[] %>
+<% if @group.requests.any? %>
 	<div class="page-header">
 		<h2>招待中</h2>
 	</div>

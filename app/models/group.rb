@@ -2,7 +2,9 @@ class Group < ActiveRecord::Base
 
 	has_many :members, dependent: :destroy # Groupが削除されたとき関連するmembersも削除される
 	has_many :requests, dependent: :destroy
-	has_many :tweets, -> { order(created_at: :desc) }, dependent: :destroy
+	# has_many :tweets, -> { order(created_at: :desc) }, dependent: :destroy
+	has_many :tweets, dependent: :destroy
+
 
 	has_many :member_users, through: :members, source: 'user'
 	has_many :accepters, through: :requests, source: 'accepter'
@@ -13,7 +15,7 @@ class Group < ActiveRecord::Base
 	# accepts_nested_attributes_for :requests,  :allow_destroy => true
 
 
-  	validate :group_name, presence: true, length: { maximum: 20 }
+  	validates :group_name, presence: true, length: { maximum: 20 }
 
 
 end

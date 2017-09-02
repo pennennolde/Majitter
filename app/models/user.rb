@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :requester_groups, through: :requester_requests, source: 'group'
 
 
-  validate :uid, presence:, uniqueness: true
-  validate :user_name, presence: true
+  validates :uid, presence: true, uniqueness: true
+  validates :user_name, presence: true
 
 
 
@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
 	#引数に関連するユーザーが存在すればそれを返し、存在しなければ新規に作成する
  	def self.find_or_create_from_auth_hash(auth_hash)
 
- 		provider   	   = auth_hash[:provider]
     uid 		       = auth_hash[:uid]
     user_name 	   = auth_hash[:info][:nickname]
     account_name   = auth_hash[:info][:name]
@@ -32,13 +31,13 @@ class User < ActiveRecord::Base
     banner_url     = auth_hash[:extra][:raw_info][:profile_banner_url]
 
 
-    user = self.find_or_create_by(provider: provider, uid: uid)
+    user = self.find_or_create_by(uid: uid)
 
    	user.user_name = user_name        unless user.user_name == user_name
     user.account_name = account_name  unless user.account_name == account_name
    	user.image_url = image_url        unless user.image_url == image_url
     user.description = description    unless user.description == description
-    user.banner_url = banner_url unless user.banner_url == banner_url
+    user.banner_url = banner_url      unless user.banner_url == banner_url
 
     user.save
 

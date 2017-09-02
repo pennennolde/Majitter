@@ -17,7 +17,8 @@ class GroupsController < ApplicationController
 		elsif @group.accepters.include?(current_user)
 			@request_for_me = true
 		else
-			redirect_to root_path, notice: 'アクセスが許可されていないページです'
+			flash[:danger] = 'アクセスが許可されていないページです'
+			redirect_to root_path
 		end
 	end
 
@@ -54,17 +55,18 @@ class GroupsController < ApplicationController
 
 	def create
 		# グループの新規作成
-		group = Group.new(group_params)
-		group.requests.each do |r|
+		@group = Group.new(group_params)
+		@group.requests.each do |r|
 			r[:requester_id] = current_user.id
 		end
-		gsaved = group.save
-		member = Member.new(group_id: group.id, user_id: current_user.id)
+		gsaved = @group.save
+		member = Member.new(group_id: @group.id, user_id: current_user.id)
 		if gsaved && member.save
-			redirect_to "/groups/#{group.id}"
+			flash[:success] = "グループを作成しました！"
+			redirect_to @group
 		else
-			# redirect_to new_group_path, notice: 'グループの作成に失敗しました'
-			render 'new'
+			# render 'new'
+			redirect_to new_group_path, flash: { error: @group.errors.full_messages }
 		end
 	end
 

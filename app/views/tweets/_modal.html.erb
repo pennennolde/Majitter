@@ -1,6 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <%= form_for(@tweet, remote: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -11,7 +12,7 @@
       <div class="modal-body">
         <div class="field">
           <div class="form-group">
-            <!-- <%= f.label :text %> -->
+            <%= f.label '140字以内で' %>
             <%= f.text_area :text, class: "form-control" %><br>
           </div>
             <!-- ラジオボタン -->

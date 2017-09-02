@@ -5,7 +5,7 @@
 	<div class="col-xs-0 col-sm-2"></div>
   	<div class="col-xs-12 col-sm-8">
   		<ul class="nav nav-tabs">
-  			<li role="presentation" class="active"><a href="/groups">グループ</a></li>
+  			<li role="presentation" class="active"><a href="/groups">グループ (<%= @member_groups.count %>)</a></li>
 			<li role="presentation"><a href="/requests">リクエスト</a></li>
  		</ul>
   	</div>
@@ -27,7 +27,7 @@
 </div>
 
 
-<% unless @member_groups==[] %>
+<% if @member_groups.any? %>
 
 	<% @member_groups.each do |g| %>
 		<div class="row">

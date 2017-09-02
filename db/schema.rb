@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902054254) do
+ActiveRecord::Schema.define(version: 20170902115409) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "group_name",      limit: 255, null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170902054254) do
   end
 
   add_index "tweets", ["group_id"], name: "index_tweets_on_group_id", using: :btree
+  add_index "tweets", ["user_id", "group_id", "created_at"], name: "index_tweets_on_user_id_and_group_id_and_created_at", using: :btree
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
