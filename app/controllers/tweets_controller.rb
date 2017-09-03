@@ -11,7 +11,7 @@ class TweetsController < ApplicationController
 			# @tweets = Tweet.where(group_id: my_g_ids).includes([:group, :user])
 			# → サブセレクト（サブクエリ）を用いて、DB上だけで完結させて早くする
     		my_g_ids = "SELECT group_id FROM members WHERE user_id = :user_id"
-    		@tweets = Tweet.where("group_id IN (#{my_g_ids})", user_id: current_user.id).includes([:group, :user])
+    		@tweets = Tweet.where("group_id IN (#{my_g_ids})", user_id: current_user.id).includes([:group, :user]).page(params[:page]).per(20)
 
 			# @tweets = current_user.member_groups.tweets.includes([:group, :user]) # ← エラー、ダメ
 		end

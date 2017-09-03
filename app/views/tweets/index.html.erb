@@ -7,15 +7,14 @@
 
 	
 	<!-- <p>タイムライン</p> -->
-	<div class="timeline">
-		<%= render @tweets %> 
+
+	<div id="timeline">
+		<div class="page">
+			<%= render @tweets %> 
+		</div>
 	</div>
+
+	<%= paginate @tweets, remote: true %>
 	
 
 <% end %>
-
-
-
-
-
-<!-- render partial: 'tweet', locals: {tweets: @tweets} -->

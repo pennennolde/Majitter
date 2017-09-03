@@ -67,3 +67,6 @@ gem 'dotenv-rails'
 gem 'twitter'
 
 gem 'bootstrap-sass'
+
+gem "kaminari"
+gem "jquery-turbolinks"

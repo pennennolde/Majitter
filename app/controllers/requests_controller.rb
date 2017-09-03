@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
 	def index
 		# 届いている招待を表示
-		@requests = current_user.accepter_requests.includes([:group, :requester])
+		@requests = current_user.accepter_requests.includes([:group, :requester]).page(params[:page]).per(20)
 	end
 
 	def destroy

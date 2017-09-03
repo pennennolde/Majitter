@@ -6,14 +6,14 @@ class GroupsController < ApplicationController
 		# 届いている招待を表示
 		# @requests = current_user.accepter_requests.includes([:group, :requester])
 		# 所属グループ一覧を表示
-		@member_groups = current_user.member_groups
+		@groups = current_user.member_groups.page(params[:page]).per(20)
 	end
 
 	def show
 		@group = Group.includes([:member_users, :tweets]).find_by(id: params[:id])
 		if @group.member_users.include?(current_user)
 			@i_am_member = true
-			@tweets = @group.tweets
+			@tweets = @group.tweets.includes([:user]).page(params[:page]).per(20)
 		elsif @group.accepters.include?(current_user)
 			@request_for_me = true
 		else
@@ -29,25 +29,25 @@ class GroupsController < ApplicationController
 		# @friend_first = JSON.generate(client.friends.first.to_h) ← hashになるが、generateの意味がないっぽい
 		# @friend_first = JSON.load(client.friends.first) ←　エラー
 		# @friend_first = JSON.parse(client.friends.first) ← エラー
-
-		@friends = client.friends.to_h
 		# @friends = JSON.load(client.friends) ← エラー、なんかおしい
 
-		@friend = @friends[:users]
+		# @friends = client.friends.to_h
+		# @friend = @friends[:users]
 
 		# フォロワー情報を取ってきて、Majitterユーザーだけ表示する(グループメンバー候補)
 
 
-
 		# 本番用
-		followers_hash = client.followers.to_h
-		followers = followers_hash[:users]
+		# フォロワー5000人以下だけ対応
+		# フォロワーが5000人以上いる場合は、得られたcursorを指定して再度取得しにいかなくてはならない
+		follower_ids_hash = client.follower_ids(stringify_ids: true).to_h
+		follower_ids = follower_ids_hash[:ids]
 
 		@maji_followers = []
 
-		followers.each do |f|
-			f_user = User.find_by(uid: f[:id_str])
-			@maji_followers << f_user unless f_user==nil
+		follower_ids.each do |i|
+			user = User.find_by(uid: i)
+			@maji_followers << user unless user==nil
 		end
 
 		@group = Group.new

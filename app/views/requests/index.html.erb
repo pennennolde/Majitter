@@ -5,7 +5,7 @@
   	<div class="col-xs-12 col-sm-8">
   		<ul class="nav nav-tabs">
   			<li role="presentation"><a href="/groups">グループ</a></li>
- 			<li role="presentation" class="active"><a href="/requests">リクエスト (<%= @requests.count %>)</a></li>
+ 			<li role="presentation" class="active"><a href="/requests">リクエスト</a></li>
  		</ul>
   	</div>
   	<div class="col-xs-0 col-sm-2"></div>
@@ -16,13 +16,12 @@
 
 <% if @requests.any? %>
 
-	<% @requests.each do |r| %>
-		<div class="row">
-			<div class="col-xs-0 col-sm-2"></div>
-  			<div class="col-xs-12 col-sm-8"><%= render partial: 'request', locals: {r: r} %></div>
-  			<div class="col-xs-0 col-sm-2"></div>
-  		</div>
-	<% end %>
+	<div id="request-list">
+		<div class="page">
+  		<%= render @requests %>
+  	</div>
+  </div>
+  <%= paginate @requests, remote: true %>
 
 <% else %>
 	<div class="row">

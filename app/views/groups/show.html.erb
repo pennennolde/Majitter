@@ -47,10 +47,16 @@
 
   
   <% if @tweets.any? %>
-  	<div class="group-timeline"><%= render @tweets %></div>
+    <div id="timeline">
+      <div class="page">
+        <%= render @tweets %> 
+      </div>
+    </div>
+    <%= paginate @tweets, remote: true %>
   <% else %>
     <div class="col-xs-0 col-sm-2"></div>
     <div class="col-xs-12 col-sm-8"><p>tweetはまだありません</p></div>
     <div class="col-xs-0 col-sm-2"></div>
   <% end %>
+
 <% end %>
