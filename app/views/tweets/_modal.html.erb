@@ -16,6 +16,7 @@
             <%= f.text_area :text, class: "form-control" %><br>
           </div>
             <% if @groups.any? %>
+              <%= f.label 'グループを選択' %><br>
               <!-- ラジオボタン -->
               <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
                 <%= b.label {b.radio_button + b.text} %>

@@ -19,9 +19,12 @@
       <div class="alert alert-<%= message_type %> center"><%= message %></div>
     <% end %>
  
-    <% if logged_in? %>
-      <%= yield %>
-    <% end %>
+    <%= yield %>
+
+    <footer class='footer'>
+      <p class="center">(C) Majitter 2017</p>
+    </footer>
+
   </div>
 
 </body>
