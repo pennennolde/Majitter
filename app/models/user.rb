@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     uid 		       = auth_hash[:uid]
     user_name 	   = auth_hash[:info][:nickname]
     account_name   = auth_hash[:info][:name]
-    image_url 	   = auth_hash[:info][:image]
+    image_url 	   = auth_hash[:extra][:raw_info][:profile_image_url_https]
     description    = auth_hash[:info][:description]
     banner_url     = auth_hash[:extra][:raw_info][:profile_banner_url]
 

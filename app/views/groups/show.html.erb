@@ -15,7 +15,12 @@
   <div class="col-xs-0 col-sm-2"></div>
 </div>
 
-<div class="jumbotron">
+<% unless @group.group_image_url==nil %>
+  <div class="jumbotron">
+    <%= image_tag @group.group_image_url, class: "img-responsive" %>
+<% else %>
+  <div class="jumbotron jumbotron-extend">
+<% end %>
   	<!-- <div class="container-fluid"> -->
     <div class="row">
     <div class="col-xs-0 col-sm-1"></div>
