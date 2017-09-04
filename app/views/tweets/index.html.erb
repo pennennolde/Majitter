@@ -5,16 +5,24 @@
 
 <% else %>
 
-	
-	<!-- <p>タイムライン</p> -->
-
-	<div id="timeline">
-		<div class="page">
-			<%= render @tweets %> 
+	<% if @tweets.any? %>
+		<!-- <p>タイムライン</p> -->
+		<div id="timeline">
+			<div class="page">
+				<%= render @tweets %> 
+			</div>
 		</div>
-	</div>
+		<div class="center">
+			<%= paginate @tweets, remote: true %>
+		</div>
 
-	<%= paginate @tweets, remote: true %>
+	<% else %>
+		<div class="center">
+			<p>Majitterへようこそ！</p>
+			<p>グループを作成して友だちとのコミュニケーションを楽しみましょう！</p>
+		</div>
+
+	<% end %>
 	
 
 <% end %>

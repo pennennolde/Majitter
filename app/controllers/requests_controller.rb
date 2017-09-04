@@ -12,10 +12,10 @@ class RequestsController < ApplicationController
 		unless request==nil
 			if request.destroy
 				# redirect_to groups_path and return, notice: 'グループ招待を拒否しました'
-				flash[:success] = "グループ招待を拒否しました！"
+				flash[:success] = "グループ招待を拒否しました"
 				redirect_to groups_path and return
 			else
-				render 'groups/show'
+				redirect_to request.referrer || root_url, flash: { error: request.errors.full_messages }
 			end
 		else
 			flash[:danger] = "アクセスが許可されていないページです"

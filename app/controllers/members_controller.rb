@@ -16,8 +16,9 @@ class MembersController < ApplicationController
 			else
 				# redirect_to groups_path, notice: 'グループへの参加に失敗しました'
 				# render 'group/show'
-				flash[:warning] = "グループ参加に失敗しました"
-				redirect_to group_path(@group)
+				# flash[:warning] = "グループ参加に失敗しました"
+				# redirect_to group_path(@group)
+				redirect_to request.referrer || root_url, flash: { error: member.errors.full_messages }
 			end
 		else
 			flash[:danger] = "アクセスが許可されていないページです"

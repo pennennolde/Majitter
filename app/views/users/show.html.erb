@@ -1,0 +1,54 @@
+
+<%= image_tag @user.banner_url, class: "img-responsive" %>
+
+<div class="row">
+	<div class="col-xs-0 col-sm-2"></div>
+
+  <div class="col-xs-12 col-sm-8">
+  	<div class="page-header">
+  		<div class="media">
+  			<div class="media-left">
+  				<%= image_tag @user.image_url %>
+  			</div>
+  			<div class="media-body media-bottom">
+  				<h2 class="media-heading"><%= @user.account_name %><small> @<%= @user.user_name %></small></h2>
+  			</div>
+      </div>
+		</div>
+   	<p><%= @user.description %></p>
+  	<p>Group数：<%= @user.member_groups.count %></p>
+  	<p>Tweet数：<%= @user.tweets.count %></p>
+  	<%= link_to 'Majitterを退会する', "/users/#{@user.id}", class: "btn btn-default", role: "button", method: :delete, data: { confirm: '本当にMajitterを退会しますか？ Majitterのデータベースからあなたのユーザー情報やMajitterでのtweetが削除されます。' } %>
+
+  </div>
+  <div class="col-xs-0 col-sm-2"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-0 col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8">
+    <div class="page-header">
+      <h2>User Timeline</h2>
+    </div>
+  </div>
+  <div class="col-xs-0 col-sm-2"></div>
+</div>
+
+<% if @tweets.any? %>
+  <div id="timeline">
+    <div class="page">
+      <%= render @tweets %> 
+    </div>
+  </div>
+  <div class="center">
+    <%= paginate @tweets, remote: true %>
+  </div>
+    
+<% else %>
+  <div class="col-xs-0 col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8"><p>tweetはまだありません</p></div>
+  <div class="col-xs-0 col-sm-2"></div>
+
+<% end %>
+
+

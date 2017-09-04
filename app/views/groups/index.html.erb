@@ -1,27 +1,22 @@
 
-
-
 <div class="row">
-	<div class="col-xs-0 col-sm-2"></div>
-  	<div class="col-xs-12 col-sm-8">
-  		<ul class="nav nav-tabs">
-  			<li role="presentation" class="active"><a href="/groups">グループ</a></li>
-			<li role="presentation"><a href="/requests">リクエスト</a></li>
- 		</ul>
-  	</div>
-  	<div class="col-xs-0 col-sm-2"></div>
+  <div class="col-xs-0 col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">グループ</li>
+    </ol>
+  </div>
+  <div class="col-xs-0 col-sm-2"></div>
 </div>
-
-
 
 <div class="row">
 	<div class="col-xs-0 col-sm-2"></div>
   <div class="col-xs-12 col-sm-8">
-    <!-- <button type="button" class="btn btn-default" href="/groups/new"> -->
-    <a class="btn btn-default" href="/groups/new" role="button">
-      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> グループをつくる
-    </a>
-    <!-- </button> -->
+    <div class="page-header">
+      <!-- <button type="button" class="btn btn-default" href="/groups/new">グループをつくる</button> -->
+      <a class="btn btn-primary" href="/groups/new" role="button">グループをつくる</a>
+   </div>
   </div>
   <div class="col-xs-0 col-sm-2"></div>
 </div>
@@ -34,12 +29,14 @@
       <%= render @groups %>
     </div>
   </div>
-  <%= paginate @groups, remote: true %>
+  <div class="center">
+    <%= paginate @groups, remote: true %>
+  </div>
 
 <% else %>
 	<div class="row">
 		<div class="col-xs-0 col-sm-2"></div>
-  		<div class="col-xs-12 col-sm-8"><p>所属グループはまだありません。グループを作成して見ましょう！</p></div>
+  		<div class="col-xs-12 col-sm-8"><p>グループはまだありません。グループを作成して見ましょう！</p></div>
   		<div class="col-xs-0 col-sm-2"></div>
 	</div>
 

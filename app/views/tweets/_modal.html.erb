@@ -15,9 +15,14 @@
             <%= f.label '140字以内で' %>
             <%= f.text_area :text, class: "form-control" %><br>
           </div>
-            <!-- ラジオボタン -->
-            <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
-              <%= b.label {b.radio_button + b.text} %>
+            <% if @groups.any? %>
+              <!-- ラジオボタン -->
+              <%= f.collection_radio_buttons(:group_id, @groups, :id, :group_name) do |b| %>
+                <%= b.label {b.radio_button + b.text} %>
+              <% end %>
+            <% else %>
+              <P>まだグループがありません。</P>
+              <P>まずはグループを作成しましょう！</P>
             <% end %>
         </div>
       </div>

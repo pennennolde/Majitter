@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :groups,    only: [:index, :show, :new, :create]
   resources :requests,  only: [:index, :destroy]
   resources :members,   only: [:edit]
+  resources :users,     only: [:show, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

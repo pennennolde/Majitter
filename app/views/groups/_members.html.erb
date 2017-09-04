@@ -1,13 +1,22 @@
 
 <div class="page-header">
-	<h2>Members</h2>
+	<h2>メンバー</h2>
 </div>
 
 <div class="row">
 	<% @group.member_users.each do |m| %>
 		<div class="col-sx-4 col-sm-4">
-			<%= image_tag m.image_url %>
-			<p>@<%= m.user_name %></p>
+			<div class="media">
+  				<div class="media-left">
+      				<%= image_tag m.image_url, class: "media-object" %>
+  				</div>
+ 				<div class="media-body media-middle">
+  					<h4 class="media-heading">
+  						<%= m.account_name %> <small>@<%= m.user_name %></small>
+  					</h4>
+ 					<%= m.description %>
+ 				</div>
+			</div>
 		</div>
 	<% end %>
 </div>
@@ -19,8 +28,17 @@
 	<div class="row">
 		<% @group.accepters.each do |a| %>
 			<div class="col-sx-4 col-sm-4">
-				<%= image_tag a.image_url %>
-				<p>@<%= a.user_name %></p>
+				<div class="media">
+  					<div class="media-left">
+      					<%= image_tag a.image_url, class: "media-object" %>
+  					</div>
+ 					<div class="media-body media-middle">
+  						<h4 class="media-heading">
+  							<%= a.account_name %> <small>@<%= a.user_name %></small>
+  						</h4>
+ 						<%= a.description %>
+ 					</div>
+				</div>
 			</div>
 		<% end %>
 	</div>
