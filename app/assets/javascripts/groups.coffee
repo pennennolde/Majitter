@@ -2,15 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  $("#group-list .page").infinitescroll
-    loading: {
-      msgText: "ロード中..."
-    }
-    animate: true,
-    navSelector: "nav.pagination" # selector for the paged navigation (it will be hidden)
-    nextSelector: "nav.pagination a[rel=next]" # selector for the NEXT link (to page 2)
-    itemSelector: "#timeline div.group" # selector for all items you'll retrieve
+
 
 $ ->
   $("#timeline .page").infinitescroll

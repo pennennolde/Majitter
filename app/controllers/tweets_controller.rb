@@ -13,6 +13,10 @@ class TweetsController < ApplicationController
     		my_g_ids = "SELECT group_id FROM members WHERE user_id = :user_id"
     		@tweets = Tweet.where("group_id IN (#{my_g_ids})", user_id: current_user.id).includes([:group, :user]).page(params[:page]).per(20)
 
+    		respond_to do |format|
+    			format.html
+    			format.js
+  			end
 			# @tweets = current_user.member_groups.tweets.includes([:group, :user]) # ← エラー、ダメ
 		end
 	end

@@ -6,16 +6,8 @@
     remote:        data-remote
     paginator:     the paginator that renders the pagination tags inside
 -%>
-<%= paginator.render do -%>
-  <nav class="pagination">
-    <% unless current_page.out_of_range? %>
-      <%= next_page_tag unless current_page.last? %>
-    <% end %>
-  </nav>
-<% end -%>
 
 
-<!-- 
 <%= paginator.render do -%>
   <nav class="pagination">
     <%= first_page_tag unless current_page.first? %>
@@ -33,5 +25,3 @@
     <% end %>
   </nav>
 <% end -%>
-
- -->

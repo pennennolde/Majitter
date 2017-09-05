@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
 	def show
-		user = User.includes([:member_groups, :tweets]).find_by(id: params[:id])
+		user = User.find_by(id: params[:id])
 		if user==current_user
 			@user = current_user
-			@tweets = current_user.tweets.page(params[:page]).per(20)
+			@tweets = current_user.tweets.includes([:group, :user]).page(params[:page]).per(20)
 		end
 	end
 

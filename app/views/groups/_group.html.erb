@@ -1,16 +1,14 @@
 
-<dev class="group">
-	<div class="row">
-		<div class="col-xs-0 col-sm-2"></div>
+<div class="row">
+	<div class="col-xs-0 col-sm-2"></div>
 
-  		<div class="col-xs-12 col-sm-8">
-  			<div class="panel panel-default active">
-  				<div class="panel-body">
-    				<%= link_to group.group_name, "/groups/#{group.id}" %>
-  				</div>
-			</div>
+  <div class="col-xs-12 col-sm-8">
+  	<div class="panel panel-default active">
+  		<div class="panel-body">
+  			<%= link_to group.group_name, group_path(group.id) %>
   		</div>
+	  </div>
+  </div>
 
-  		<div class="col-xs-0 col-sm-2"></div>
-  	</div>
-</dev>
+  <div class="col-xs-0 col-sm-2"></div>
+</div>

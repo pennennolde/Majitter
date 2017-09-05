@@ -51,13 +51,19 @@
       <%= render @tweets %> 
     </div>
   </div>
-  <div class="center">
-    <%= paginate @tweets, remote: true %>
+  <div class="row">
+    <div class="col-xs-0 col-sm-2"></div>
+    <div class="col-xs-12 col-sm-8">
+      <div class="center">
+        <%= paginate @tweets, remote: true %>
+      </div>
+    </div>
+    <div class="col-xs-0 col-sm-2"></div>
   </div>
-    
+  
 <% else %>
   <div class="col-xs-0 col-sm-2"></div>
-  <div class="col-xs-12 col-sm-8"><p>tweetはまだありません</p></div>
+  <div class="col-xs-12 col-sm-8"><p>tweetはまだありません。</p></div>
   <div class="col-xs-0 col-sm-2"></div>
 
 <% end %>

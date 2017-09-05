@@ -1,16 +1,14 @@
 
-<div class="request">
-		<div class="row">
-			<div class="col-xs-0 col-sm-2"></div>
+<div class="row">
+	<div class="col-xs-0 col-sm-2"></div>
 
-  			<div class="col-xs-12 col-sm-8">
-  				<div class="panel panel-default active">
-  					<div class="panel-body">
-    					<%= link_to request.group.group_name, "/groups/#{request.group.id}" %>	<%= request.requester.account_name %> @<%= request.requester.user_name %> より
-  					</div>
-				</div>	
-  			</div>
+	<div class="col-xs-12 col-sm-8">
+		<div class="panel panel-default active">
+				<div class="panel-body">
+ 					<%= link_to request.group.group_name, group_path(request.group.id) %>	<%= request.requester.account_name %> @<%= request.requester.user_name %> より
+				</div>
+		</div>	
+	</div>
 
-  			<div class="col-xs-0 col-sm-2"></div>
-  		</div>
+	<div class="col-xs-0 col-sm-2"></div>
 </div>

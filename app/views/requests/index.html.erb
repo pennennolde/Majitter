@@ -17,14 +17,7 @@
     <div class="col-xs-12 col-sm-8"><p>グループへ招待されています。</p></div>
     <div class="col-xs-0 col-sm-2"></div>
   </div>
-	<div id="request-list">
-		<div class="page">
-  		<%= render @requests %>
-  	</div>
-  </div>
-  <div class="center">
-    <%= paginate @requests, remote: true %>
-  </div>
+  <%= render @requests %>
   
 <% else %>
 	<div class="row">
