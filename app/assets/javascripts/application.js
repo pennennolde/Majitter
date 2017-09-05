@@ -19,4 +19,3 @@
 //
 // Bootstrap Sass
 //= require bootstrap-sprockets
-//

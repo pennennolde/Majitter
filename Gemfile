@@ -70,3 +70,5 @@ gem 'bootstrap-sass', '3.3.5'
 
 gem "kaminari", '1.0.1'
 gem "jquery-turbolinks", '2.1.0'
+
+gem 'puma', group: :production
