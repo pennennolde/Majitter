@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
  	def self.find_or_create_from_auth_hash(auth_hash)
 
     uid 		       = auth_hash[:uid]
+    provider       = auth_hash[:provider]
     user_name 	   = auth_hash[:info][:nickname]
     account_name   = auth_hash[:info][:name]
     image_url 	   = auth_hash[:extra][:raw_info][:profile_image_url_https]
@@ -38,6 +39,7 @@ class User < ActiveRecord::Base
    	user.image_url = image_url        unless user.image_url == image_url
     user.description = description    unless user.description == description
     user.banner_url = banner_url      unless user.banner_url == banner_url
+    user.provider = provider          unless user.provider == provider
 
     user.save
 
