@@ -18,9 +18,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '5.0.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -46,11 +46,11 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', '1.2017.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 
-gem 'pry-rails'
+gem 'pry-rails', '0.3.6'
 gem 'compass-rails', '~> 2.0'
 gem 'sprockets', '2.11.0'
 gem 'coffee-script-source', '1.8.0'
@@ -59,14 +59,14 @@ gem 'pg', group: :production
 
 gem 'rails_12factor', group: :production
 
-gem 'oauth'
-gem 'omniauth-twitter'
+gem 'oauth', '0.5.3'
+gem 'omniauth-twitter', '1.4.0'
 
-gem 'dotenv-rails'
+gem 'dotenv-rails', '2.2.1'
 
-gem 'twitter'
+gem 'twitter', '6.1.0'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.3.5'
 
-gem "kaminari"
-gem "jquery-turbolinks"
+gem "kaminari", '1.0.1'
+gem "jquery-turbolinks", '2.1.0'
