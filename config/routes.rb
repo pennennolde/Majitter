@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'tweets#index'
 
   get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/failure'            => 'tweets#index'
   get '/logout'                  => 'sessions#destroy' # deleteじゃなくてよいのか？
 
   resources :tweets,    only: [:index, :new, :create]
